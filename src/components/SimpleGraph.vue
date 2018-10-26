@@ -1,22 +1,15 @@
 
 <script>
-import { Bar } from 'vue-chartjs'
+import { Bar, mixins } from 'vue-chartjs'
 
 export default {
   extends: Bar,
+  mixins: [mixins.reactiveProp],
+  props: ['chartData'],
   mounted () {
+    const options = {} // this is the options for something you want for the graph please see the documentation.
     // Overwriting base render method with actual data.
-    this.renderChart({
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      datasets: [
-        {
-          label: 'GitHub Commits',
-          backgroundColor: '#3f51b5',
-          data: [50, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-        }
-      ]
-    })
+    this.renderChart(this.chartData, options)
   }
 }
 </script>
-
